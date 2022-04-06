@@ -43,16 +43,18 @@ int main() {
   struct sockaddr_in client_addr;
   char buffer[100];
   int clientaddr_size = sizeof(client_addr);
-  int ByteReceived =
-      recvfrom(socket_server, (char *)buffer, sizeof(buffer), 0,
-               (sockaddr *)&client_addr,
-               (socklen_t *)&clientaddr_size); // returns sizeof data received
-  std::cout << buffer << std::endl;
-  if (ByteReceived < 0) {
-    std::cout << "Byte recieve from client unsuccessful" << std::endl;
-    exit(0);
+  while (buffer != " ") {
+    int ByteReceived =
+        recvfrom(socket_server, (char *)buffer, sizeof(buffer), 0,
+                 (sockaddr *)&client_addr,
+                 (socklen_t *)&clientaddr_size); // returns sizeof data received
+    std::cout << buffer << std::endl;
+    if (ByteReceived < 0) {
+      std::cout << "Byte recieve from client unsuccessful" << std::endl;
+      exit(0);
+    }
+    std::cout << ByteReceived << std::endl;
   }
-  std::cout << ByteReceived << std::endl;
 
   return 0;
 }
