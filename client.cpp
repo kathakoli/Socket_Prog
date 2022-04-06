@@ -29,11 +29,14 @@ int main() {
 
   // send to server
   char data_sent[100] = "abcde";
-  int bytes_sent = sendto(socket_client, data_sent, sizeof(data_sent), 0,
-                          (struct sockaddr *)&toserver_addr,
-                          sizeof(toserver_addr)); // returns size of data sent
-  std::cout << bytes_sent << std::endl;
-  std::cout << data_sent << std::endl;
+  while (1) {
+    int bytes_sent = sendto(socket_client, data_sent, sizeof(data_sent), 0,
+                            (struct sockaddr *)&toserver_addr,
+                            sizeof(toserver_addr)); // returns size of data sent
+    std::cout << bytes_sent << std::endl;
+    std::cout << data_sent << std::endl;
+  }
+
   return 0;
 }
 
